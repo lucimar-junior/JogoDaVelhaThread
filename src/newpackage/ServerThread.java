@@ -132,7 +132,7 @@ public class ServerThread extends Thread{
                 
                 //Enviar mensagem para executar a tela
                 ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
-                saida.writeObject("iniciarTela:" + usuario);
+                saida.writeObject("iniciarTela:" + usuario + ":1");
                 saida.flush();
             }
             
@@ -141,7 +141,7 @@ public class ServerThread extends Thread{
         
         entrada = new ObjectInputStream(socket.getInputStream());
                 
-        String usuarioOponente = "iniciarTela:" + (String) entrada.readObject();
+        String usuarioOponente = "iniciarTela:" + (String) entrada.readObject() + ":" + usuario;
         
         i = 0;
         

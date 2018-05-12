@@ -31,9 +31,9 @@ public class Game {
             String msg = (String) entrada.readObject();
             String[] msgSplit = msg.split(":");
 
-            if(msgSplit[0].equalsIgnoreCase("iniciarTela") && msgSplit[1].equalsIgnoreCase(meuNomeUsuario)){
+            /*if(msgSplit[0].equalsIgnoreCase("iniciarTela") && msgSplit[1].equalsIgnoreCase(meuNomeUsuario)){
                 new Velha().setVisible(true);
-            }
+            }*/
             
             //cliente.close();
             

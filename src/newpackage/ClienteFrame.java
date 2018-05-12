@@ -1,14 +1,5 @@
 package newpackage;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 public class ClienteFrame extends javax.swing.JFrame {
     Cliente cliente = new Cliente();
     Game game = new Game();
+    public static String nome;
     Velha velha;
     String ipOponente;
     int portaOponente;
@@ -192,6 +184,9 @@ public class ClienteFrame extends javax.swing.JFrame {
                 txtEndServidor.setEnabled(false);
                 txtNomeUsuario.setEnabled(false);
                 txtPorta.setEnabled(false);
+                nome = txtNomeUsuario.getText();
+                new ClienteThread(nome).start();
+                new AtualizaTabelaThread().start();
             }
         }        
     }//GEN-LAST:event_btnConectarActionPerformed
@@ -240,6 +235,9 @@ public class ClienteFrame extends javax.swing.JFrame {
         
         if(jogarSucesso){
             new Velha().setVisible(true);
+            Velha.txtJogador.setText(meuNomeUsuario + ":");
+            Velha.txtOponente.setText(nomeOponente + ":");
+            Velha.txtJogadorVs.setText(meuNomeUsuario + " X " + nomeOponente);
         }
     }//GEN-LAST:event_btnJogarActionPerformed
  
@@ -274,13 +272,6 @@ public class ClienteFrame extends javax.swing.JFrame {
         }        
     }
     
-    private static void addClientesTabela(Cliente cliente){
-        if(tblUsuarios.isEnabled() && !cliente.getNome().equalsIgnoreCase(txtNomeUsuario.getText())){
-            DefaultTableModel model = (DefaultTableModel) tblUsuarios.getModel();
-
-            model.addRow(new Object[]{cliente.getNome(), cliente.getStatus(), cliente.getIp(), cliente.getPorta()});
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -313,40 +304,8 @@ public class ClienteFrame extends javax.swing.JFrame {
             public void run() {
                 new ClienteFrame().setVisible(true);
             }
-        });
-        
-        try {
-            new ClienteThread().start();
-            MulticastSocket ms = new MulticastSocket(12312);
-            InetAddress grp = InetAddress.getByName("239.0.0.1");
-            ms.joinGroup(grp);
-            byte[] resp = new byte[2048];
-            while(true){
-                ArrayList<Object> object = new ArrayList<>();
-                Cliente cliente = new Cliente();
-                DatagramPacket pkg = new DatagramPacket(resp, resp.length);
-                ms.receive(pkg);
-                object = (ArrayList)deserialize(pkg.getData());
-                
-                removeLinhas();
-                
-                for(int i = 0; i < object.size(); i++){
-                    cliente = (Cliente)object.get(i);
-                    addClientesTabela(cliente);
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClienteFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private static Object deserialize(byte[] data) throws IOException, ClassNotFoundException {
-        ByteArrayInputStream in = new ByteArrayInputStream(data);
-        ObjectInputStream is = new ObjectInputStream(in);
-        return is.readObject();
-    }
+        });  
+    }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConectar;
@@ -357,9 +316,9 @@ public class ClienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTable tblUsuarios;
+    public static javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtEndServidor;
-    public static javax.swing.JTextField txtNomeUsuario;
+    public javax.swing.JTextField txtNomeUsuario;
     private javax.swing.JTextField txtPorta;
     // End of variables declaration//GEN-END:variables
 }

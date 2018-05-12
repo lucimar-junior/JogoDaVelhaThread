@@ -16,7 +16,17 @@ public class Velha extends javax.swing.JFrame {
      */
     public Velha() {
         initComponents();
+        this.txtPontosJogador.setText("0");
+        this.txtPontosOponente.setText("0");
     }
+    
+    /*public Velha(String jogador, String oponente){
+        this.txtJogador.setText(jogador);
+        this.txtOponente.setText(oponente);
+        this.txtJogadorVs.setText(jogador + " X " + oponente);
+        this.txtPontosJogador.setText("0");
+        this.txtPontosOponente.setText("0");
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,12 +38,12 @@ public class Velha extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        txtVezJogador = new javax.swing.JLabel();
+        txtJogadorVs = new javax.swing.JLabel();
+        txtJogador = new javax.swing.JLabel();
+        txtOponente = new javax.swing.JLabel();
+        txtPontosJogador = new javax.swing.JLabel();
+        txtPontosOponente = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -46,22 +56,23 @@ public class Velha extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Vez:");
 
-        jLabel2.setText("Jogador 1");
+        txtVezJogador.setText("Jogador 1");
 
-        jLabel3.setText("Jogador 1 X Jogador 2");
+        txtJogadorVs.setText("Jogador 1 X Jogador 2");
 
-        jLabel4.setText("Jogador 1:");
+        txtJogador.setText("Jogador 1:");
 
-        jLabel5.setText("Jogador 2:");
-        jLabel5.setToolTipText("");
+        txtOponente.setText("Jogador 2:");
+        txtOponente.setToolTipText("");
 
-        jLabel6.setText("1000");
+        txtPontosJogador.setText("1000");
 
-        jLabel7.setText("1200");
-        jLabel7.setToolTipText("");
+        txtPontosOponente.setText("1200");
+        txtPontosOponente.setToolTipText("");
 
         jLabel8.setText("Pontos:");
 
@@ -100,18 +111,18 @@ public class Velha extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel3))
+                                .addComponent(txtVezJogador))
+                            .addComponent(txtJogadorVs))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(txtOponente)
                                 .addGap(61, 61, 61)
-                                .addComponent(jLabel7))
+                                .addComponent(txtPontosOponente))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(txtJogador)
                                 .addGap(61, 61, 61)
-                                .addComponent(jLabel6))
+                                .addComponent(txtPontosJogador))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(42, 42, 42)))))
@@ -123,17 +134,17 @@ public class Velha extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(txtVezJogador)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
+                    .addComponent(txtJogadorVs)
+                    .addComponent(txtJogador)
+                    .addComponent(txtPontosJogador))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(txtOponente)
+                    .addComponent(txtPontosOponente))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,12 +220,12 @@ public class Velha extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    public static javax.swing.JLabel txtJogador;
+    public static javax.swing.JLabel txtJogadorVs;
+    public static javax.swing.JLabel txtOponente;
+    private javax.swing.JLabel txtPontosJogador;
+    private javax.swing.JLabel txtPontosOponente;
+    public javax.swing.JLabel txtVezJogador;
     // End of variables declaration//GEN-END:variables
 }
