@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 public class ClienteThread extends Thread{
     String nomeUsuario;
-    JFrame velha = new Velha();
+    JFrame velha = new Velha(false);
 
     public ClienteThread(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;

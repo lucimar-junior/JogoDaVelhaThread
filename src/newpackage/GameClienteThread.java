@@ -25,7 +25,7 @@ public class GameClienteThread extends Thread{
         recebeDados();
     }
     
-    static private void recebeDados() {
+    private void recebeDados() {
         while(true){
             try{
                 MulticastSocket ms = new MulticastSocket(12312);
@@ -41,6 +41,8 @@ public class GameClienteThread extends Thread{
 
                 preencheBotao(letra, botao);
                 habilitarBotoes();
+                
+                Velha.trocaLabelVez();
             }
             catch (IOException ex) {
                 Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
@@ -48,7 +50,7 @@ public class GameClienteThread extends Thread{
         }
     }
     
-    static private void preencheBotao(String letra, String botao){
+    private void preencheBotao(String letra, String botao){
         switch(botao){
             case "1":
                 btn1.setText(letra);
@@ -87,7 +89,7 @@ public class GameClienteThread extends Thread{
         }
     }
     
-    static private void habilitarBotoes(){
+    private void habilitarBotoes(){
         Velha.btn1.setEnabled(true);
         Velha.btn2.setEnabled(true);
         Velha.btn3.setEnabled(true);

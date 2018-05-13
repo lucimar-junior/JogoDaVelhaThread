@@ -234,7 +234,7 @@ public class ClienteFrame extends javax.swing.JFrame {
         boolean jogarSucesso = game.jogar(ip, porta, meuNomeUsuario, ipOponente, portaOponente, nomeOponente);
         
         if(jogarSucesso){
-            new Velha().setVisible(true);
+            new Velha(true).setVisible(true);
             Velha.txtVezJogador.setText(meuNomeUsuario);
             Velha.txtJogador.setText(meuNomeUsuario + ":");
             Velha.txtOponente.setText(nomeOponente + ":");
@@ -320,7 +320,7 @@ public class ClienteFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtEndServidor;
-    public javax.swing.JTextField txtNomeUsuario;
+    public static javax.swing.JTextField txtNomeUsuario;
     private javax.swing.JTextField txtPorta;
     // End of variables declaration//GEN-END:variables
 }

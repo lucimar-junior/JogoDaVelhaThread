@@ -5,28 +5,34 @@
  */
 package newpackage;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author jubil
  */
 public class Velha extends javax.swing.JFrame {
-
+    boolean euChameiParaJogar;
+    static boolean minhaVez;
+    String minhaLetra;
     /**
      * Creates new form Velha
      */
-    public Velha() {
+    public Velha(boolean euChameiParaJogar) {
         initComponents();
         this.txtPontosJogador.setText("0");
         this.txtPontosOponente.setText("0");
+        this.euChameiParaJogar = euChameiParaJogar;
+        this.setTitle(ClienteFrame.txtNomeUsuario.getText());
+        
+        if(euChameiParaJogar){
+            minhaLetra = "X";
+            minhaVez = true;
+        }
+        
+        else{
+            minhaLetra = "O";
+            minhaVez = false;
+        }
     }
 
     /**
@@ -220,41 +226,75 @@ public class Velha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        ClienteThread.enviaDados("X:7");
+        ClienteThread.enviaDados(minhaLetra + ":7");
+        trocaLabelVez();
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        ClienteThread.enviaDados("X:1");
+        ClienteThread.enviaDados(minhaLetra + ":1");
+        trocaLabelVez();
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        ClienteThread.enviaDados("X:2");
+        ClienteThread.enviaDados(minhaLetra + ":2");
+        trocaLabelVez();
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        ClienteThread.enviaDados("X:3");
+        ClienteThread.enviaDados(minhaLetra + ":3");
+        trocaLabelVez();
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        ClienteThread.enviaDados("X:4");
+        ClienteThread.enviaDados(minhaLetra + ":4");
+        trocaLabelVez();
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        ClienteThread.enviaDados("X:5");
+        ClienteThread.enviaDados(minhaLetra + ":5");
+        trocaLabelVez();
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        ClienteThread.enviaDados("X:6");
+        ClienteThread.enviaDados(minhaLetra + ":6");
+        trocaLabelVez();
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        ClienteThread.enviaDados("X:8");
+        ClienteThread.enviaDados(minhaLetra + ":8");
+        trocaLabelVez();
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        ClienteThread.enviaDados("X:9");
+        ClienteThread.enviaDados(minhaLetra + ":9");
+        trocaLabelVez();
     }//GEN-LAST:event_btn9ActionPerformed
 
+    static public void trocaLabelVez(){
+        String label = txtOponente.getText().replace(":", "");
+        
+        if(minhaVez){
+            minhaVez = false;
+        }
+        
+        else{
+            minhaVez = true;
+        }
+        
+        if(minhaVez){
+           txtVezJogador.setText(ClienteFrame.txtNomeUsuario.getText());
+        }
+        
+        else{
+            if(!ClienteFrame.txtNomeUsuario.getText().equalsIgnoreCase(label)){
+                txtVezJogador.setText(label);
+            }
+            
+            else{
+                txtVezJogador.setText(txtJogador.getText().replace(":", ""));
+            }
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -284,11 +324,11 @@ public class Velha extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Velha().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
