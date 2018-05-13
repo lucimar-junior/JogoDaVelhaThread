@@ -235,9 +235,11 @@ public class ClienteFrame extends javax.swing.JFrame {
         
         if(jogarSucesso){
             new Velha().setVisible(true);
+            Velha.txtVezJogador.setText(meuNomeUsuario);
             Velha.txtJogador.setText(meuNomeUsuario + ":");
             Velha.txtOponente.setText(nomeOponente + ":");
             Velha.txtJogadorVs.setText(meuNomeUsuario + " X " + nomeOponente);
+            new GameClienteThread().start();
         }
     }//GEN-LAST:event_btnJogarActionPerformed
  

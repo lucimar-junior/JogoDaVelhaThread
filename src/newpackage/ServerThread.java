@@ -141,12 +141,13 @@ public class ServerThread extends Thread{
         
         entrada = new ObjectInputStream(socket.getInputStream());
                 
-        String usuarioOponente = "iniciarTela:" + (String) entrada.readObject() + ":" + usuario;
+        String usuarioOponente = (String) entrada.readObject();
+        String mensagem = "iniciarTela:" + usuarioOponente + ":" + usuario;
         
         i = 0;
         
         InetAddress ip = InetAddress.getByName("239.0.0.2");
-        byte[] msg = usuarioOponente.getBytes();
+        byte[] msg = mensagem.getBytes();
         DatagramSocket ds = new DatagramSocket();
         DatagramPacket pkg = new DatagramPacket(msg, msg.length, ip, 12312);
         ds.send(pkg);
@@ -166,5 +167,6 @@ public class ServerThread extends Thread{
         }
         
         atualizarUsuarios();
+        new GameThread(usuario, usuarioOponente).start();
     }
 }

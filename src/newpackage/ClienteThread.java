@@ -1,10 +1,11 @@
 package newpackage;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.util.ArrayList;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -36,9 +37,12 @@ public class ClienteThread extends Thread{
                 if(mensagemQuebrada[0].equals("iniciarTela") && nomeUsuario.equals(nome)){
                     if(!velha.isVisible()){
                         velha.setVisible(true);
-                        Velha.txtJogador.setText(nome + ":");
-                        Velha.txtOponente.setText(mensagemQuebrada[2] + ":");
-                        Velha.txtJogadorVs.setText(nome + " X " + mensagemQuebrada[2]);
+                        Velha.txtVezJogador.setText(mensagemQuebrada[2]);
+                        Velha.txtJogador.setText(mensagemQuebrada[2] + ":");
+                        Velha.txtOponente.setText(nome + ":");
+                        Velha.txtJogadorVs.setText(mensagemQuebrada[2] + " X " + nome);
+                        desabilitaBotoes();
+                        new GameClienteThread().start();
                     }
                 }
                 
@@ -49,5 +53,31 @@ public class ClienteThread extends Thread{
         } catch (IOException ex) {
             Logger.getLogger(ClienteThread.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    static public void enviaDados(String msg) {
+        Socket cliente;
+        try {
+            cliente = new Socket("127.0.0.1", 12346);
+            ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
+            saida.writeObject(msg + ":2");
+            saida.flush();
+            
+            desabilitaBotoes();
+        } catch (IOException ex) {
+            Logger.getLogger(Velha.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    static public void desabilitaBotoes(){
+        Velha.btn1.setEnabled(false);
+        Velha.btn2.setEnabled(false);
+        Velha.btn3.setEnabled(false);
+        Velha.btn4.setEnabled(false);
+        Velha.btn5.setEnabled(false);
+        Velha.btn6.setEnabled(false);
+        Velha.btn7.setEnabled(false);
+        Velha.btn8.setEnabled(false);
+        Velha.btn9.setEnabled(false);
     }
 }
