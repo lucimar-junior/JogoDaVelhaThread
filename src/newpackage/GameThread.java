@@ -47,7 +47,13 @@ public class GameThread extends Thread{
                 String mensagem = (String) entrada.readObject();
                 //String[] mensagemQuebrada = mensagem.split(":");
                 /*String letra = mensagemQuebrada[0];
-                String botao = mensagemQuebrada[1];*/
+                String botao = mensagemQuebrada[1];*/                
+                
+                //TODO: Implementar
+                if(mensagem.equalsIgnoreCase("encerrarThread")) {
+                    System.out.println("Thread servidor encerrada");
+                    Thread.currentThread().interrupt();
+                }
                 
                 InetAddress ip = InetAddress.getByName("239.0.0.3");
                 byte[] msg = mensagem.getBytes();

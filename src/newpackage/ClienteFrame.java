@@ -321,6 +321,6 @@ public class ClienteFrame extends javax.swing.JFrame {
     public static javax.swing.JTable tblUsuarios;
     public static javax.swing.JTextField txtEndServidor;
     public static javax.swing.JTextField txtNomeUsuario;
-    private javax.swing.JTextField txtPorta;
+    public static javax.swing.JTextField txtPorta;
     // End of variables declaration//GEN-END:variables
 }

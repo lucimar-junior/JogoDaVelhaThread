@@ -51,6 +51,7 @@ public class AtualizaTabelaThread extends Thread{
         if(tblUsuarios.isEnabled() && !cliente.getNome().equalsIgnoreCase(ClienteFrame.nome)){
             DefaultTableModel model = (DefaultTableModel) tblUsuarios.getModel();
 
+            //TODO: Colocar os pontos ao invés do IP
             model.addRow(new Object[]{cliente.getNome(), cliente.getStatus(), cliente.getIp(), cliente.getPorta()});
         }
     }

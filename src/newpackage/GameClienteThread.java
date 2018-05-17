@@ -1,13 +1,17 @@
 package newpackage;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static newpackage.ClienteFrame.txtEndServidor;
+import static newpackage.ClienteFrame.txtPorta;
 import static newpackage.Velha.btn1;
 import static newpackage.Velha.btn2;
 import static newpackage.Velha.btn3;
@@ -17,8 +21,6 @@ import static newpackage.Velha.btn6;
 import static newpackage.Velha.btn7;
 import static newpackage.Velha.btn8;
 import static newpackage.Velha.btn9;
-import static newpackage.Velha.txtJogador;
-import static newpackage.Velha.txtOponente;
 import static newpackage.Velha.txtVezJogador;
 
 public class GameClienteThread extends Thread{
@@ -171,10 +173,25 @@ public class GameClienteThread extends Thread{
             else{
                 JOptionPane.showMessageDialog(null, "Que pena, " + txtVezJogador.getText() + " venceu.", "Fim de jogo", INFORMATION_MESSAGE);
             }
+            
+            encerrarThreadServidor();
+            
+            //limpar e iniciar uma nova janela VelhaFrame
+            ClienteThread.velha.dispose();
+            ClienteThread.velha = new Velha(false);
+            
+            Thread.currentThread().stop();
         }
         
         else if(isBoardFull()){
             JOptionPane.showMessageDialog(null, "Ninguém venceu!!!", "Fim de jogo", INFORMATION_MESSAGE);
+            encerrarThreadServidor();
+            
+            //limpar e iniciar uma nova janela VelhaFrame
+            ClienteThread.velha.dispose();
+            ClienteThread.velha = new Velha(false);
+            
+            Thread.currentThread().stop();
         }
     }	
     
@@ -220,5 +237,19 @@ public class GameClienteThread extends Thread{
     // Check to see if all three values are the same (and not empty) indicating a win.
     static private boolean checkRowCol(String c1, String c2, String c3) {
         return ((!c1.equals("-")) && (c1.equals(c2)) && (c2.equals(c3)));
+    }
+    
+    static private void encerrarThreadServidor(){
+        String ip = txtEndServidor.getText();
+        int porta = Integer.parseInt(txtPorta.getText());
+        Socket cliente;
+        try {
+            cliente = new Socket(ip, porta);
+            ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
+            saida.writeObject("encerrarThread");
+            saida.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(GameClienteThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

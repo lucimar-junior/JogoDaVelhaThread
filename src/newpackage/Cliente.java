@@ -15,7 +15,7 @@ public class Cliente implements Serializable{
     private ClienteFrame clienteFrame;
     private Servidor servidor;
     private String nome, status, ip;
-    private int id, porta;
+    private int id, porta, pontos;
     
     //private boolean isConnected = false;
         
@@ -130,6 +130,14 @@ public class Cliente implements Serializable{
 
     public void setPorta(int porta) {
         this.porta = porta;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
     
     

@@ -8,10 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static newpackage.Servidor.arrayClientes;
 
 public class Game {
-    private Socket cliente, clienteOponente;
+    private Socket cliente;
     
     public boolean jogar(String ip, int porta, String meuNomeUsuario, String ipOponente, int portaOponente, String nomeOponente) {
         try{            
