@@ -319,7 +319,7 @@ public class ClienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable tblUsuarios;
-    private javax.swing.JTextField txtEndServidor;
+    public static javax.swing.JTextField txtEndServidor;
     public static javax.swing.JTextField txtNomeUsuario;
     private javax.swing.JTextField txtPorta;
     // End of variables declaration//GEN-END:variables

@@ -62,11 +62,10 @@ public class ClienteThread extends Thread{
         }
     }
     
-    static public void enviaDados(String msg) {
+    static public void enviaDados(String msg, String ip) {
         Socket cliente;
         try {
-            //TODO:Passar IP do servidor dinamicamente
-            cliente = new Socket("127.0.0.1", 12346);
+            cliente = new Socket(ip, 12346);
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
             saida.writeObject(msg + ":2");
             saida.flush();
