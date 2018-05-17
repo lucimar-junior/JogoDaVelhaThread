@@ -40,9 +40,15 @@ public class GameClienteThread extends Thread{
                 String botao = mensagemQuebrada[1];
 
                 preencheBotao(letra, botao);
-                habilitarBotoes();
-                
                 Velha.trocaLabelVez();
+                
+                if(Velha.minhaVez){
+                    habilitarBotoes();
+                }               
+            
+                else if(!Velha.minhaVez){
+                    desabilitaBotoes();
+                }
             }
             catch (IOException ex) {
                 Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,5 +105,17 @@ public class GameClienteThread extends Thread{
         Velha.btn7.setEnabled(true);
         Velha.btn8.setEnabled(true);
         Velha.btn9.setEnabled(true);
+    }
+    
+    static public void desabilitaBotoes(){
+        Velha.btn1.setEnabled(false);
+        Velha.btn2.setEnabled(false);
+        Velha.btn3.setEnabled(false);
+        Velha.btn4.setEnabled(false);
+        Velha.btn5.setEnabled(false);
+        Velha.btn6.setEnabled(false);
+        Velha.btn7.setEnabled(false);
+        Velha.btn8.setEnabled(false);
+        Velha.btn9.setEnabled(false);
     }
 }

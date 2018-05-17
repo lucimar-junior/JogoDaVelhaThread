@@ -234,7 +234,7 @@ public class ClienteFrame extends javax.swing.JFrame {
         boolean jogarSucesso = game.jogar(ip, porta, meuNomeUsuario, ipOponente, portaOponente, nomeOponente);
         
         if(jogarSucesso){
-            new Velha(true).setVisible(true);
+            ClienteThread.velha.setVisible(true);
             Velha.txtVezJogador.setText(meuNomeUsuario);
             Velha.txtJogador.setText(meuNomeUsuario + ":");
             Velha.txtOponente.setText(nomeOponente + ":");

@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 public class ClienteThread extends Thread{
     String nomeUsuario;
-    JFrame velha = new Velha(false);
+    public static JFrame velha = new Velha(false);
 
     public ClienteThread(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
@@ -34,9 +34,16 @@ public class ClienteThread extends Thread{
                 String[] mensagemQuebrada = mensagem.split(":");
                 String nome = mensagemQuebrada[1];
                 
+                if(mensagemQuebrada[2].equals(nomeUsuario)){
+                    Velha.euChameiParaJogar = true;
+                    Velha.minhaLetra = "X";
+                    Velha.minhaVez = true;
+                }
+                
                 if(mensagemQuebrada[0].equals("iniciarTela") && nomeUsuario.equals(nome)){
                     if(!velha.isVisible()){
                         velha.setVisible(true);
+                        
                         Velha.txtVezJogador.setText(mensagemQuebrada[2]);
                         Velha.txtJogador.setText(mensagemQuebrada[2] + ":");
                         Velha.txtOponente.setText(nome + ":");
@@ -58,12 +65,11 @@ public class ClienteThread extends Thread{
     static public void enviaDados(String msg) {
         Socket cliente;
         try {
+            //TODO:Passar IP do servidor dinamicamente
             cliente = new Socket("127.0.0.1", 12346);
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
             saida.writeObject(msg + ":2");
             saida.flush();
-            
-            desabilitaBotoes();
         } catch (IOException ex) {
             Logger.getLogger(Velha.class.getName()).log(Level.SEVERE, null, ex);
         }

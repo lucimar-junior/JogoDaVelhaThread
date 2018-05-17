@@ -11,9 +11,9 @@ package newpackage;
  * @author jubil
  */
 public class Velha extends javax.swing.JFrame {
-    boolean euChameiParaJogar;
+    static boolean euChameiParaJogar;
     static boolean minhaVez;
-    String minhaLetra;
+    static String minhaLetra;
     /**
      * Creates new form Velha
      */
@@ -227,47 +227,47 @@ public class Velha extends javax.swing.JFrame {
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":7");
-        trocaLabelVez();
+       // trocaLabelVez();
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":1");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":2");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":3");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":4");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":5");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":6");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":8");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         ClienteThread.enviaDados(minhaLetra + ":9");
-        trocaLabelVez();
+        //trocaLabelVez();
     }//GEN-LAST:event_btn9ActionPerformed
 
     static public void trocaLabelVez(){
@@ -294,6 +294,8 @@ public class Velha extends javax.swing.JFrame {
                 txtVezJogador.setText(txtJogador.getText().replace(":", ""));
             }
         }
+        
+        System.out.println("Minha vez: " + minhaVez);
     }
     
     /**

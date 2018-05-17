@@ -142,7 +142,7 @@ public class ServerThread extends Thread{
         entrada = new ObjectInputStream(socket.getInputStream());
                 
         String usuarioOponente = (String) entrada.readObject();
-        String mensagem = "iniciarTela:" + usuarioOponente + ":" + usuario;
+        String mensagem = "iniciarTela:" + usuarioOponente + ":" + usuario + ":1";
         
         i = 0;
         
